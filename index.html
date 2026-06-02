@@ -402,6 +402,7 @@ header {
       <div class="category-filter" id="category-bar">
         <button class="cat-btn active" onclick="filterCategory('All')">ALL</button>
         <button class="cat-btn" onclick="filterCategory('Australia Tour Of Pakistan - ODI Series 2026')">PAKvAUS</button>
+        <button class="cat-btn" onclick="filterCategory('Indian Premier League')">IPL</button>
       </div>
       <div class="ch-list" id="channel-list"></div>
     </div>
@@ -410,7 +411,7 @@ header {
 
 <script>
   const CHANNELS = [
-   { id: 7, mode: "web", category: "Australia Tour Of Pakistan - ODI Series 2026",player:"shaka", name: "Fox Cricket 501", url: "https://dck1-fs-live.dtcdn.dazn.com/out/v1/814bffb9b389f652/d65feac5647949e6b45b2674d4715398/index.mpd",key:"01c9bbf8137e58378a5ead514998a7b4:fb01e61809e80e5e93a889cd31daab22", logo: "https://eapi.pcloud.com/getpubthumb?code=XZtLSwZmO6sXWSRdzyTLmmdSrhOJ4UBXHAX&linkpassword=undefined&size=583x800&crop=0&type=auto", quality: "UPTO 1080p", fps: "50 FPS", vpn: "Worldwide" }
+   { id: 7, mode: "web", category: "Australia Tour Of Pakistan - ODI Series 2026",player:"shaka", name: "PCB LIVE", url: "https://dice-live-ap.akamaized.net/hdntl=exp=1780485116~acl=*dash%2flive%2f2102613%2f303006-322308%2f*!*dash%2flive%2f2102613-b%2f303006-322308-b%2f*~id=8fa4d1a4-acfd-4a8a-9092-8dccc719fd4d~data=hdntl,dWlkPW52ek5QRXw4NjlhNjJkNS0xMzBiLTQxMmYtOGVkMi0wZjk5NjcwN2IzNWUmaXA9MTAzLjEwMi40MS4yMCZleHA9MTc4MDQ4NTE0NCZlaWQ9MzAzMDA2JmNpZD1kY2UucGNiJm9pZD00NjYmdHlwZT1MSVZF~hmac=ab040f56b2bbdeaa6a3408cc1f5f394dd2c09d70f2f850855665c31793039af1/dash/live/2102613/303006-322308/manifest-d.mpd",key:"7645ce9f48e840fcbe6950b3b8c2f43a:daa5b5b1484241cc86eb2a7e7e1a5113", logo: "https://upload.wikimedia.org/wikipedia/commons/a/ad/Pakistan_cricket_team_logo.png", quality: "UPTO 1080p", fps: "25 FPS", vpn: "Worldwide" },
   ];
 
   let clapprPlayer, shakaInstance, shakaVideo, uiTimer, hlsInstance;
@@ -661,7 +662,7 @@ header {
   function filterCategory(cat) {
     activeCategory = cat;
     document.querySelectorAll('.cat-btn').forEach(btn => {
-      btn.classList.toggle('active', btn.innerText === (cat === 'Australia Tour Of Pakistan - ODI Series 2026' ? 'PAKvAUS' : 'ALL'));
+      btn.classList.toggle('active', btn.innerText === (cat === 'Australia Tour Of Pakistan - ODI Series 2026' ? 'PAKvAUS' : cat === 'Indian Premier League' ? 'IPL' : 'ALL'));
     });
     renderChannels();
   }
