@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
-<title>CRICLOUNGE — PakistanTeam</title>
+<title>FOOTBALL LOUNGE — FIFA WC</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@clappr/player@latest/dist/clappr.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.3.5/shaka-player.compiled.js"></script>
@@ -348,7 +348,7 @@ header {
 <body>
 
 <header>
-  <div class="brand">CRIC<span>LOUNGE</span></div>
+  <div class="brand">FOOTBALL <span>LOUNGE</span></div>
 </header>
 
 <div class="wrap">
@@ -401,8 +401,7 @@ header {
       <div class="ch-list-head">LIVE_FEED</div>
       <div class="category-filter" id="category-bar">
         <button class="cat-btn active" onclick="filterCategory('All')">ALL</button>
-        <button class="cat-btn" onclick="filterCategory('Australia Tour Of Pakistan - ODI Series 2026')">PAKvAUS</button>
-        <button class="cat-btn" onclick="filterCategory('Indian Premier League')">IPL</button>
+        <button class="cat-btn" onclick="filterCategory('FIFA WC')">FIFA WC</button>
       </div>
       <div class="ch-list" id="channel-list"></div>
     </div>
@@ -411,7 +410,7 @@ header {
 
 <script>
   const CHANNELS = [
-   { id: 7, mode: "web", category: "Australia Tour Of Pakistan - ODI Series 2026",player:"shaka", name: "PCB LIVE", url: "https://dice-live-ap.akamaized.net/hdntl=exp=1780656985~acl=*dash%2flive%2f2102635%2f303007-322350%2f*!*dash%2flive%2f2102635-b%2f303007-322350-b%2f*~id=cf247869-249f-4a74-aafc-a6d8af93fa44~data=hdntl,dWlkPW52ek5QRXw4NjlhNjJkNS0xMzBiLTQxMmYtOGVkMi0wZjk5NjcwN2IzNWUmaXA9MTAzLjkzLjIxOS4xNTcmZXhwPTE3ODA2NTcwMTUmZWlkPTMwMzAwNyZjaWQ9ZGNlLnBjYiZvaWQ9NDY2JnR5cGU9TElWRQ~hmac=affebd9a62523c54274d4550a76919604333922aee9ff934a738bc5f8f160ec1/dash/live/2102635/303007-322350/manifest-d.mpd",key:"531e20718ef84ef0951b77ecef86b836:8a753fbfd6124c9c824d7b56cd09b635", logo: "https://upload.wikimedia.org/wikipedia/commons/a/ad/Pakistan_cricket_team_logo.png", quality: "UPTO 1080p", fps: "25 FPS", vpn: "Worldwide" },
+   { id: 1, mode: "web", category: "FIFA WC", player: "hls", name: "beIN Sports", url: "https://1nyaler.streamhostingcdn.top/stream/23/index.m3u8", logo: "https://cdn.iptvboss.pro/logos/International_Sports/beINSPORTS1.hk.png", quality: "1080P", fps: "50 FPS", vpn: "Worldwide" },
   ];
 
   let clapprPlayer, shakaInstance, shakaVideo, uiTimer, hlsInstance;
@@ -662,7 +661,7 @@ header {
   function filterCategory(cat) {
     activeCategory = cat;
     document.querySelectorAll('.cat-btn').forEach(btn => {
-      btn.classList.toggle('active', btn.innerText === (cat === 'Australia Tour Of Pakistan - ODI Series 2026' ? 'PAKvAUS' : cat === 'Indian Premier League' ? 'IPL' : 'ALL'));
+      btn.classList.toggle('active', btn.innerText === (cat === 'FIFA WC' ? 'FIFA WC' : 'ALL'));
     });
     renderChannels();
   }
