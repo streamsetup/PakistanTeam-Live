@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
-<title>FOOTBALL LOUNGE — FIFA WC</title>
+<title>SportsLounge— PakistanTeam</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@clappr/player@latest/dist/clappr.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.3.5/shaka-player.compiled.js"></script>
@@ -348,7 +348,7 @@ header {
 <body>
 
 <header>
-  <div class="brand">FOOTBALL <span>LOUNGE</span></div>
+  <div class="brand">SPORTS<span> LOUNGE</span></div>
 </header>
 
 <div class="wrap">
@@ -400,8 +400,8 @@ header {
     <div class="channels-section">
       <div class="ch-list-head">LIVE_FEED</div>
       <div class="category-filter" id="category-bar">
-        <button class="cat-btn active" onclick="filterCategory('All')">ALL</button>
-        <button class="cat-btn" onclick="filterCategory('FIFA WC')">FIFA WC</button>
+        <button class="cat-btn active"  onclick="filterCategory('FIFA World Cup 2026')">FIFA WC</button>
+        <button class="cat-btn" onclick="filterCategory(&quot;ICC Women&#39;s T20 World Cup 2026&quot;)">WT20 WC</button>
       </div>
       <div class="ch-list" id="channel-list"></div>
     </div>
@@ -410,11 +410,14 @@ header {
 
 <script>
   const CHANNELS = [
-   { id: 1, mode: "web", category: "FIFA WC", player: "hls", name: "beIN Sports", url: "https://1nyaler.streamhostingcdn.top/stream/23/index.m3u8", logo: "https://cdn.iptvboss.pro/logos/International_Sports/beINSPORTS1.hk.png", quality: "1080P", fps: "50 FPS", vpn: "Worldwide" },
+   { id: 1, mode: "web", category: "FIFA World Cup 2026", player: "hls", name: "beIN Sports", url: "https://1nyaler.streamhostingcdn.top/stream/23/index.m3u8", logo: "https://cdn.iptvboss.pro/logos/International_Sports/beINSPORTS1.hk.png", quality: "1080P", fps: "50 FPS", vpn: "Worldwide" },
+   { id: 2, mode: "web", category: "ICC Women's T20 World Cup 2026", player: "shaka", name: "Willow Sports", url: "https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/tll6uwepxa/out/v1/a7f67cbb33df46539312956427343886/cenc.mpd", key: "290e09c837da78d5cd961978d390515c:b748836c71e6a4ca68ef5b5652db6247", logo: "https://eapi.pcloud.com/getpubthumb?code=XZB9YKZbvL8U70ec6FsHY8ffWIlMFEJBm4k&linkpassword=undefined&size=900x274&crop=0&type=auto", quality: "1080P", fps: "30 FPS", vpn: "Worldwide" },
+   { id: 3, mode: "web", category: "ICC Women's T20 World Cup 2026", mode: "app", name: "CricBuzz", url: "http://filex.me:8080/live/amin007007/nxKYVmQsTZ/451415.m3u8", logo: "https://eapi.pcloud.com/getpubthumb?code=XZU0xKZ4ji5BkAs5rSuAFxyluOKfJEmnrkX&linkpassword=&size=850x276&crop=0&type=auto", quality: "720p", fps: "25 FPS", vpn: "Worldwide" },
+   { id: 4, mode: "web", category: "ICC Women's T20 World Cup 2026", player: "shaka", name: "Prime", url: "https://live-pv-ta.amazon.fastly-edge.com/syd-nitro/startover/clients/dash/manipulated-manifest-syd-prod/enc/vcpdw2ddkq/out/v1/2298afadf64943adb0b44dc540ace1ce/0ad64aca-422b-47d9-891c-f5a83afd18f2-cenc.mpd?amznDtid=AOAGZA014O5RE&amznPN=xp&amznPV=ATVWebPlayerSDK-1.0.238590.0&encoding=segmentBase", key: "ee0c99be51120d109657df5229b48b01:6f0cc18e09de8ec73414bb2209d6c63b,b770d5b4bb6b594daf985845aae9aa5f:b0cb46d2d31cf044bc73db71e9865f6f", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Amazon_Prime_logo_%282024%29.svg/3840px-Amazon_Prime_logo_%282024%29.svg.png", quality: "UPTO 1080P", fps: "50 FPS", vpn: "Worldwide" },
   ];
 
   let clapprPlayer, shakaInstance, shakaVideo, uiTimer, hlsInstance;
-  let activeCategory = "All";
+  let activeCategory = "FIFA World Cup 2026";
   let activeChannelIndex = 0;
   let touchStartX = 0;
   let touchEndX = 0;
@@ -660,8 +663,9 @@ header {
 
   function filterCategory(cat) {
     activeCategory = cat;
+    const labels = { 'FIFA World Cup 2026': 'FIFA WC', 'ICC Women\'s T20 World Cup 2026': 'WT20 WC' };
     document.querySelectorAll('.cat-btn').forEach(btn => {
-      btn.classList.toggle('active', btn.innerText === (cat === 'FIFA WC' ? 'FIFA WC' : 'ALL'));
+      btn.classList.toggle('active', btn.innerText.trim() === labels[cat]);
     });
     renderChannels();
   }
@@ -679,7 +683,8 @@ header {
         const modal = document.createElement('div');
         modal.className = 'choice-modal';
         modal.innerHTML = `
-          <div class="choice-card">
+          <div class="choice-card" style="position:relative;">
+            <button id="choose-close" style="position:absolute;top:10px;right:10px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);color:var(--muted);width:28px;height:28px;border-radius:50%;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1;">&#x2715;</button>
             <div style="font-size: 18px; margin-bottom: 10px; color: var(--txt);">SELECT PLAYER</div>
             <div style="font-size: 12px; color: var(--muted); margin-bottom: 5px;">How would you like to watch?</div>
             <div style="font-size: 14px; color: var(--acc); margin-bottom: 20px;">${ch.name}</div>
@@ -690,6 +695,9 @@ header {
           </div>
         `;
         document.body.appendChild(modal);
+
+        // Close button
+        document.getElementById('choose-close').onclick = () => { modal.remove(); };
 
         // Option 1: App Logic
         document.getElementById('choose-app').onclick = () => {
@@ -744,8 +752,12 @@ header {
       } else {
           let config = { abr: { enabled: true } };
           if (ch.key?.includes(':')) {
-            const [kid, key] = ch.key.split(':');
-            config.drm = { clearKeys: { [kid.replace(/-/g, '')]: key } };
+            const clearKeys = {};
+            ch.key.split(',').forEach(pair => {
+              const [kid, key] = pair.trim().split(':');
+              if (kid && key) clearKeys[kid.replace(/-/g, '')] = key;
+            });
+            config.drm = { clearKeys };
           }
           shakaInstance.configure(config);
           try {
