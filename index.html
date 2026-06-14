@@ -343,12 +343,217 @@ header {
 .btn-opt:active { transform: scale(0.95); }
 
 @media(max-width:1024px) { .live-layout { grid-template-columns: 1fr; } }
+
+/* ── Telegram Popup ── */
+#tg-popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 99999999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeInOverlay 0.4s ease;
+}
+@keyframes fadeInOverlay {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+#tg-popup-card {
+  background: linear-gradient(145deg, rgba(18, 26, 20, 0.95), rgba(10, 15, 11, 0.98));
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 24px;
+  padding: 36px 32px 30px;
+  max-width: 380px;
+  width: 90%;
+  max-height: 88vh;
+  overflow-y: auto;
+  text-align: center;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(26, 140, 53, 0.15);
+  animation: slideUpCard 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+  scrollbar-width: thin;
+  scrollbar-color: var(--acc) transparent;
+}
+#tg-popup-card::-webkit-scrollbar { width: 4px; }
+#tg-popup-card::-webkit-scrollbar-thumb { background: var(--acc); border-radius: 10px; }
+@keyframes slideUpCard {
+  from { opacity: 0; transform: translateY(40px) scale(0.92); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+#tg-popup-close {
+  position: absolute;
+  top: 14px; right: 16px;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: var(--muted);
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s;
+  font-family: var(--font-main);
+  line-height: 1;
+}
+#tg-popup-close:hover { background: rgba(255,255,255,0.15); color: #fff; }
+.tg-icon-wrap {
+  width: 72px; height: 72px;
+  background: linear-gradient(135deg, #2196f3, #0d47a1);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 20px;
+  box-shadow: 0 8px 30px rgba(33, 150, 243, 0.4);
+}
+.tg-icon-wrap svg { width: 38px; height: 38px; fill: #fff; }
+#tg-popup-card h2 {
+  font-size: 18px;
+  letter-spacing: 1.5px;
+  color: var(--txt);
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+#tg-popup-card p {
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 24px;
+  letter-spacing: 0.5px;
+  line-height: 1.6;
+  font-weight: 400;
+}
+.header-tg-btn {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: linear-gradient(135deg, #1a7fd4, #1255a3);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px;
+  width: 36px; height: 36px;
+  justify-content: center;
+  font-family: var(--font-main);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(26, 127, 212, 0.4);
+  transition: all 0.22s ease;
+}
+.header-tg-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(26, 127, 212, 0.55); background: linear-gradient(135deg, #2196f3, #1565c0); }
+.header-tg-btn:active { transform: scale(0.96); }
+.header-tg-btn svg { width: 20px; height: 20px; fill: #fff; flex-shrink: 0; }
+.tg-section-label {
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin: 14px 0 6px;
+  text-align: left;
+  padding-left: 2px;
+}
+.tg-btn-group { display: flex; flex-direction: column; gap: 12px; width: 100%; }
+.tg-join-btn {
+  display: flex; align-items: center; gap: 10px;
+  width: 100%; padding: 14px 18px;
+  background: linear-gradient(135deg, #1a7fd4, #1255a3);
+  color: #fff; border: none; border-radius: 12px;
+  font-family: var(--font-main); font-weight: 700;
+  font-size: 11px; letter-spacing: 0.8px; text-transform: uppercase;
+  text-decoration: none; cursor: pointer;
+  box-shadow: 0 4px 16px rgba(26, 127, 212, 0.35);
+  transition: all 0.22s ease;
+}
+.tg-join-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(26, 127, 212, 0.5); background: linear-gradient(135deg, #2196f3, #1565c0); }
+.tg-join-btn:active { transform: scale(0.97); }
+.tg-join-btn svg { width: 18px; height: 18px; fill: #fff; flex-shrink: 0; }
+.tg-join-btn .btn-label { flex: 1; text-align: left; line-height: 1.3; }
+.tg-join-btn .btn-arrow { font-size: 14px; opacity: 0.7; flex-shrink: 0; }
+.tg-skip {
+  display: block; margin-top: 14px;
+  font-size: 10px; color: var(--muted); cursor: pointer;
+  letter-spacing: 0.5px; transition: color 0.2s;
+  background: none; border: none; font-family: var(--font-main); font-weight: 700;
+}
+.tg-skip:hover { color: var(--txt); }
 </style>
 </head>
 <body>
 
+<!-- ── Telegram Popup ── -->
+<div id="tg-popup-overlay">
+  <div id="tg-popup-card">
+    <button id="tg-popup-close" onclick="closeTgPopup()" aria-label="Close">&#x2715;</button>
+    <div class="tg-icon-wrap">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+      </svg>
+    </div>
+    <h2>Join Our Channels</h2>
+    <p>Get replays, highlights, live links &amp; more — all on Telegram.</p>
+
+    <div class="tg-section-label">Full Match Replays &amp; Highlights</div>
+    <div class="tg-btn-group">
+      <a class="tg-join-btn" href="https://t.me/+LNl-YpTLIsdkYjVk" target="_blank" rel="noopener" onclick="closeTgPopup()">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+        <span class="btn-label">Pakistan Replays</span>
+        <span class="btn-arrow">›</span>
+      </a>
+    </div>
+
+    <div class="tg-section-label">Match Clips &amp; Updates</div>
+    <div class="tg-btn-group">
+      <a class="tg-join-btn" href="https://t.me/CricLounge" target="_blank" rel="noopener" onclick="closeTgPopup()">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+        <span class="btn-label">The Cricket Lounge</span>
+        <span class="btn-arrow">›</span>
+      </a>
+    </div>
+
+    <div class="tg-section-label">Ball by Ball Highlights</div>
+    <div class="tg-btn-group">
+      <a class="tg-join-btn" href="https://t.me/pakistanteam" target="_blank" rel="noopener" onclick="closeTgPopup()">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+        <span class="btn-label">Cricket Group Replay</span>
+        <span class="btn-arrow">›</span>
+      </a>
+      <a class="tg-join-btn" href="https://t.me/cricketranajee" target="_blank" rel="noopener" onclick="closeTgPopup()">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+        <span class="btn-label">Replay Hub</span>
+        <span class="btn-arrow">›</span>
+      </a>
+    </div>
+
+    <div class="tg-section-label">Live Links</div>
+    <div class="tg-btn-group">
+      <a class="tg-join-btn" href="https://t.me/+25pwryZIV7xiMGY0" target="_blank" rel="noopener" onclick="closeTgPopup()">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+        <span class="btn-label">Live Cricket Links</span>
+        <span class="btn-arrow">›</span>
+      </a>
+    </div>
+
+    <div class="tg-section-label">Football Content</div>
+    <div class="tg-btn-group">
+      <a class="tg-join-btn" href="https://t.me/footlounge07" target="_blank" rel="noopener" onclick="closeTgPopup()">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+        <span class="btn-label">The Football Lounge</span>
+        <span class="btn-arrow">›</span>
+      </a>
+    </div>
+
+    <button class="tg-skip" onclick="closeTgPopup()">SKIP FOR NOW</button>
+  </div>
+</div>
+
 <header>
   <div class="brand">SPORTS<span> LOUNGE</span></div>
+  <button class="header-tg-btn" onclick="openTgPopup()">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+  </button>
 </header>
 
 <div class="wrap">
@@ -402,6 +607,7 @@ header {
       <div class="category-filter" id="category-bar">
         <button class="cat-btn active"  onclick="filterCategory('FIFA World Cup 2026')">FIFA WC</button>
         <button class="cat-btn" onclick="filterCategory(&quot;ICC Women&#39;s T20 World Cup 2026&quot;)">WT20 WC</button>
+        <button class="cat-btn" onclick="filterCategory('New Zealand Tour of England - Test 2026')">ENGvNZ</button>
       </div>
       <div class="ch-list" id="channel-list"></div>
     </div>
@@ -411,9 +617,12 @@ header {
 <script>
   const CHANNELS = [
    { id: 1, mode: "web", category: "FIFA World Cup 2026", player: "hls", name: "beIN Sports", url: "https://1nyaler.streamhostingcdn.top/stream/23/index.m3u8", logo: "https://cdn.iptvboss.pro/logos/International_Sports/beINSPORTS1.hk.png", quality: "1080P", fps: "50 FPS", vpn: "Worldwide" },
+   { id: 5, mode: "app", category: "FIFA World Cup 2026", name: "TSN", url: "http://filex.me:8080/live/amin007007/nxKYVmQsTZ/290734.m3u8", logo: "https://cdn.iptvboss.pro/logos/Canada/TSN1.ca.png", quality: "1080P", fps: "60 FPS", vpn: "Worldwide" },
+{ id: 4, mode: "web", category: "ICC Women's T20 World Cup 2026", player: "shaka", name: "Prime", url: "https://live-pv-ta.amazon.fastly-edge.com/syd-nitro/startover/clients/dash/manipulated-manifest-syd-prod/enc/vcpdw2ddkq/out/v1/2298afadf64943adb0b44dc540ace1ce/0ad64aca-422b-47d9-891c-f5a83afd18f2-cenc.mpd", key: "ee0c99be51120d109657df5229b48b01:6f0cc18e09de8ec73414bb2209d6c63b,b770d5b4bb6b594daf985845aae9aa5f:b0cb46d2d31cf044bc73db71e9865f6f", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Amazon_Prime_logo_%282024%29.svg/3840px-Amazon_Prime_logo_%282024%29.svg.png", quality: "UPTO 1080P", fps: "50 FPS", vpn: "Worldwide" },
    { id: 2, mode: "web", category: "ICC Women's T20 World Cup 2026", player: "shaka", name: "Willow Sports", url: "https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/tll6uwepxa/out/v1/a7f67cbb33df46539312956427343886/cenc.mpd", key: "290e09c837da78d5cd961978d390515c:b748836c71e6a4ca68ef5b5652db6247", logo: "https://eapi.pcloud.com/getpubthumb?code=XZB9YKZbvL8U70ec6FsHY8ffWIlMFEJBm4k&linkpassword=undefined&size=900x274&crop=0&type=auto", quality: "1080P", fps: "30 FPS", vpn: "Worldwide" },
    { id: 3, mode: "web", category: "ICC Women's T20 World Cup 2026", mode: "app", name: "CricBuzz", url: "http://filex.me:8080/live/amin007007/nxKYVmQsTZ/451415.m3u8", logo: "https://eapi.pcloud.com/getpubthumb?code=XZU0xKZ4ji5BkAs5rSuAFxyluOKfJEmnrkX&linkpassword=&size=850x276&crop=0&type=auto", quality: "720p", fps: "25 FPS", vpn: "Worldwide" },
-   { id: 4, mode: "web", category: "ICC Women's T20 World Cup 2026", player: "shaka", name: "Prime", url: "https://live-pv-ta.amazon.fastly-edge.com/syd-nitro/startover/clients/dash/manipulated-manifest-syd-prod/enc/vcpdw2ddkq/out/v1/2298afadf64943adb0b44dc540ace1ce/0ad64aca-422b-47d9-891c-f5a83afd18f2-cenc.mpd?amznDtid=AOAGZA014O5RE&amznPN=xp&amznPV=ATVWebPlayerSDK-1.0.238590.0&encoding=segmentBase", key: "ee0c99be51120d109657df5229b48b01:6f0cc18e09de8ec73414bb2209d6c63b,b770d5b4bb6b594daf985845aae9aa5f:b0cb46d2d31cf044bc73db71e9865f6f", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Amazon_Prime_logo_%282024%29.svg/3840px-Amazon_Prime_logo_%282024%29.svg.png", quality: "UPTO 1080P", fps: "50 FPS", vpn: "Worldwide" },
+   { id: 6, mode: "app", category: "ICC Women's T20 World Cup 2026", name: "Sky Sports Cricket", url: "http://filex.me:8080/live/amin007007/nxKYVmQsTZ/250199.m3u8", logo: "https://cdn.iptvboss.pro/logos/UK/SkySportsCricket.uk.png", quality: "1080P", fps: "50 FPS", vpn: "Worldwide" },
+   { id: 7, mode: "app", category: "New Zealand Tour of England - Test 2026", name: "Sky Sports Cricket", url: "http://filex.me:8080/live/amin007007/nxKYVmQsTZ/250199.m3u8", logo: "https://cdn.iptvboss.pro/logos/UK/SkySportsCricket.uk.png", quality: "1080P", fps: "50 FPS", vpn: "Worldwide" },
   ];
 
   let clapprPlayer, shakaInstance, shakaVideo, uiTimer, hlsInstance;
@@ -807,6 +1016,27 @@ header {
       }
     });
   }
+
+  // ── Telegram Popup ──
+  function closeTgPopup() {
+    const overlay = document.getElementById('tg-popup-overlay');
+    overlay.style.transition = 'opacity 0.3s ease';
+    overlay.style.opacity = '0';
+    setTimeout(() => overlay.style.display = 'none', 320);
+  }
+
+  function openTgPopup() {
+    const overlay = document.getElementById('tg-popup-overlay');
+    overlay.style.display = 'flex';
+    overlay.style.opacity = '0';
+    overlay.style.transition = 'opacity 0.3s ease';
+    setTimeout(() => overlay.style.opacity = '1', 10);
+  }
+
+  // Close on backdrop click
+  document.getElementById('tg-popup-overlay').addEventListener('click', function(e) {
+    if (e.target === this) closeTgPopup();
+  });
 
   document.addEventListener('DOMContentLoaded', initPlayer);
 </script>
